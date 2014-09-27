@@ -1,5 +1,6 @@
 package is.ru.honn.ruber.test;
 
+import is.ru.honn.ruber.domain.History;
 import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.User;
 import is.ru.honn.ruber.service.*;
@@ -176,6 +177,20 @@ public class TestRuberService extends TestCase
 		log.info("testActivity");
 
 		boolean exceptionThrown = false;
+		History tempHistory = null;
+
+		//Try to get the history of a user when there are no users ready
+		try{
+			tempHistory = service.getHistory(testUser1.getUsername());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertTrue(exceptionThrown);
+		assertNull(tempHistory);
+		tempHistory = null;
+		exceptionThrown = false;
 
 		//Try to add a trip when there are no users ready
 		try{
@@ -198,6 +213,20 @@ public class TestRuberService extends TestCase
 						testUser1.getPicture(),
 						testUser1.getPromoCode());
 
+		//Try to get the history of a user that has no trips
+		try{
+			tempHistory = service.getHistory(testUser1.getUsername());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertFalse(exceptionThrown);
+		assertNotNull(tempHistory);
+		assertTrue(tempHistory.getHistory().isEmpty());
+		tempHistory = null;
+		exceptionThrown = false;
+
 
 		//Try to add a trip for an existing user
 		try{
@@ -208,6 +237,21 @@ public class TestRuberService extends TestCase
 		}
 
 		assertFalse(exceptionThrown);
+		exceptionThrown = false;
+
+		//Try to get the history of a user that has 1 trip
+		try{
+			tempHistory = service.getHistory(testUser1.getUsername());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertFalse(exceptionThrown);
+		assertNotNull(tempHistory);
+		assertFalse(tempHistory.getHistory().isEmpty());
+		assertEquals(1, tempHistory.getHistory().size());
+		tempHistory = null;
 		exceptionThrown = false;
 
 		//Try to add a trip for a non-existing user
