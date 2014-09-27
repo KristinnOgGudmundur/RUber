@@ -44,6 +44,9 @@ public class TestRuberService extends TestCase
 
 	}
 
+	/**
+	 * Tests the methods signup(), getUsers() and getUser() in a given RuberService implementation
+	 */
 	@Test
 	public void testUser()
 	{
@@ -75,7 +78,7 @@ public class TestRuberService extends TestCase
 		assertFalse(tempList.isEmpty());
 	}
 
-	public void addTestUsers(){
+	private void addTestUsers(){
 		boolean exceptionThrown = false;
 
 		//Try to get a user from an empty database
@@ -163,9 +166,14 @@ public class TestRuberService extends TestCase
 
 	}
 
+	/**
+	 * Tests the methods addTrips() and getHistory() in a given RuberService implementation
+	 */
 	@Test
 	public void testActivity()
 	{
+		//TODO: Implement
 		log.info("testActivity");
+
 	}
 }
