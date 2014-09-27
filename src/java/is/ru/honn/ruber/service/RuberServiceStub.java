@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
+import javax.xml.ws.Service;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class RuberServiceStub extends RuObject implements RuberService
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber, int pageSize) throws ArrayIndexOutOfBoundsException {
+	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException {
 		return this.userService.getUsers(pageNumber, pageSize);
 	}
 
