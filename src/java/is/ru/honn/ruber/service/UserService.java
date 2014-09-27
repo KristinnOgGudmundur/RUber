@@ -10,6 +10,8 @@ import java.util.List;
  * Created by Gvendur Stefáns on 27.9.2014.
  */
 public class UserService implements RuberUserService{
+	//TODO: Get messages from the resource bundle
+
 	private List<User> users = new ArrayList<User>();
 
 
