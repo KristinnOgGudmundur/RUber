@@ -3,6 +3,7 @@ package is.ru.honn.ruber.test;
 import is.ru.honn.ruber.domain.User;
 import is.ru.honn.ruber.service.RuberService;
 import is.ru.honn.ruber.service.RuberUserService;
+import is.ru.honn.ruber.service.UserNotFoundException;
 import is.ru.honn.ruber.service.UsernameExistsException;
 import junit.framework.TestCase;
 import org.junit.Before;
@@ -26,11 +27,17 @@ public class TestRuberService extends TestCase
 	@Autowired
 	private RuberService service;
 
+	//A user to test signup logic
 	@Autowired
 	private User testUser1;
 
+	//A user to test signup logic
 	@Autowired
 	private User testUser2;
+
+	//This user should never be signed up
+	@Autowired
+	private User testUser3;
 
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
@@ -48,13 +55,26 @@ public class TestRuberService extends TestCase
 
 		assertTrue(service.getUsers().isEmpty());
 
-		testUsernameExists();
+		addTestUsers();
 
 		assertFalse(service.getUsers().isEmpty());
 	}
 
-	public void testUsernameExists(){
-		boolean usernameExists = false;
+	public void addTestUsers(){
+		boolean exceptionThrown = false;
+
+		//Try to get a user from an empty database
+		try{
+			service.getUser(testUser1.getUsername());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertTrue(exceptionThrown);
+		exceptionThrown = false;
+
+		//Try to sign up a user
 		try{
 			service.signup(testUser1.getUsername(),
 					testUser1.getFirstName(),
@@ -65,12 +85,13 @@ public class TestRuberService extends TestCase
 					testUser1.getPromoCode());
 		}
 		catch(UsernameExistsException e){
-			usernameExists = true;
+			exceptionThrown = true;
 		}
 
-		assertFalse(usernameExists);
-		usernameExists = false;
+		assertFalse(exceptionThrown);
+		exceptionThrown = false;
 
+		//Try to sign up an already existing user
 		try {
 			service.signup(testUser1.getUsername(),
 					testUser1.getFirstName(),
@@ -81,12 +102,13 @@ public class TestRuberService extends TestCase
 					testUser1.getPromoCode());
 		}
 		catch(UsernameExistsException e){
-			usernameExists = true;
+			exceptionThrown = true;
 		}
 
-		assertTrue(usernameExists);
-		usernameExists = false;
+		assertTrue(exceptionThrown);
+		exceptionThrown = false;
 
+		//Try to sign up a new user
 		try {
 			service.signup(testUser2.getUsername(),
 					testUser2.getFirstName(),
@@ -97,10 +119,33 @@ public class TestRuberService extends TestCase
 					testUser2.getPromoCode());
 		}
 		catch(UsernameExistsException e){
-			usernameExists = true;
+			exceptionThrown = true;
 		}
 
-		assertFalse(usernameExists);
+		assertFalse(exceptionThrown);
+		exceptionThrown = false;
+
+		//Try to get a non-existing user from a non-empty user service
+		try{
+			service.getUser(testUser3.getUsername());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertFalse(exceptionThrown);
+		exceptionThrown = false;
+
+		//Try to get an existing
+		try{
+			service.getUser(testUser1.getUsername());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertTrue(exceptionThrown);
+
 	}
 
 	@Test
