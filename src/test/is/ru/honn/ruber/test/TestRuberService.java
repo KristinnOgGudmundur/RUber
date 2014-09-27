@@ -52,6 +52,7 @@ public class TestRuberService extends TestCase
 	{
 		log.info("testUser");
 
+		//Try to get users from an empty list
 		List<User> tempList = new ArrayList<User>();
 
 		try{
@@ -63,8 +64,10 @@ public class TestRuberService extends TestCase
 
 		assertTrue(tempList.isEmpty());
 
+		//Test adding users to the service
 		addTestUsers();
 
+		//Try to get users from a non-empty list
 		try{
 			tempList = service.getUsers(0);
 		}
