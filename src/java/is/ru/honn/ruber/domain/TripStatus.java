@@ -3,12 +3,12 @@ package is.ru.honn.ruber.domain;
 /**
  * Created by Kristinn on 26.9.2014.
  */
-public enum Status {
+public enum TripStatus {
     COMPLETED(1);
 
     protected final int value;
 
-    private Status(int value) {
+    private TripStatus(int value) {
         this.value = value;
     }
 

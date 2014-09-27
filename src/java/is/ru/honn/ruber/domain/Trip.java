@@ -7,7 +7,7 @@ public class Trip {
     protected String uuid;
     protected int requestTime;
     protected String productId;
-    protected Status status;
+    protected TripStatus status;
     protected float distance;
     protected int startTime;
     protected int endTime;
@@ -39,11 +39,11 @@ public class Trip {
         this.productId = productId;
     }
 
-    public Status getStatus() {
+    public TripStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(TripStatus status) {
         this.status = status;
     }
 
