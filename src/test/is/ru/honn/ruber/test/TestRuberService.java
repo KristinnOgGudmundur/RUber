@@ -16,28 +16,28 @@ import java.util.logging.Logger;
 public class TestRuberService extends TestCase
 {
 
-  Logger log = Logger.getLogger(TestRuberService.class.getName());
+	Logger log = Logger.getLogger(TestRuberService.class.getName());
 
-  @Autowired
-  private RuberService service;
+	@Autowired
+	private RuberService service;
 
-  @Before
-  public void setUp() throws Exception
-  {
+	@Before
+	public void setUp() throws Exception
+	{
 
-  }
+	}
 
-  @Test
-  public void testUser()
-  {
-    log.info("testUser");
-    fail();
-  }
+	@Test
+	public void testUser()
+	{
+		log.info("testUser");
+		fail();
+	}
 
-  @Test
-  public void testActivity()
-  {
-    log.info("testActivity");
-    //fail();
-  }
+	@Test
+	public void testActivity()
+	{
+		log.info("testActivity");
+		//fail();
+	}
 }
