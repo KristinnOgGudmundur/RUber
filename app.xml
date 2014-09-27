@@ -5,4 +5,11 @@
 
     <bean id="RuberService" class="is.ru.honn.ruber.service.RuberServiceStub" />
 
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>messages</value>
+        </property>
+    </bean>
+
 </beans>
