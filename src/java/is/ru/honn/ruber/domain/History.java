@@ -11,14 +11,8 @@ public class History {
     protected List<Trip> history;
 
     public History() {
-    }
-
-	public History(int offset, int limit, int count){
-		setOffset(offset);
-		setLimit(limit);
-		setCount(count);
 		history = new ArrayList<Trip>();
-	}
+    }
 
     public int getOffset() {
         return offset;
