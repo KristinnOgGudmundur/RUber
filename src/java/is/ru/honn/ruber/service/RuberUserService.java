@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Gvendur Stefáns on 27.9.2014.
  */
 public interface RuberUserService {
-	//TODO: Make sure the parameters and return values make sense
+	//TODO: Make javadoc
 	public void addTrips();
 	public History getHistory(User user);
 	public void signup(String userName, String firstName, String lastName, String password, String email, String picture, String promoCode) throws UsernameExistsException;
