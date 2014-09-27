@@ -1,5 +1,6 @@
 package is.ru.honn.ruber.test;
 
+import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.User;
 import is.ru.honn.ruber.service.*;
 import junit.framework.TestCase;
@@ -175,6 +176,60 @@ public class TestRuberService extends TestCase
 		//TODO: Implement
 		log.info("testActivity");
 
+		boolean exceptionThrown = false;
 
+		//Try to add a trip when there are no users ready
+		try{
+			service.addTrips(testUser1.getUsername(), new Trip());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertTrue(exceptionThrown);
+		exceptionThrown = false;
+
+
+		//Add a user
+		service.signup(	testUser1.getUsername(),
+						testUser1.getFirstName(),
+						testUser1.getLastName(),
+						testUser1.getEmail(),
+						testUser1.getPassword(),
+						testUser1.getPicture(),
+						testUser1.getPromoCode());
+
+
+		//Try to add a trip for an existing user
+		try{
+			service.addTrips(testUser1.getUsername(), new Trip());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertFalse(exceptionThrown);
+		exceptionThrown = false;
+
+		//Try to add a trip for a non-existing user
+		try{
+			service.addTrips(testUser3.getUsername(), new Trip());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertTrue(exceptionThrown);
+		exceptionThrown = false;
+
+		//Try to add a second trip for an existing user
+		try{
+			service.addTrips(testUser1.getUsername(), new Trip());
+		}
+		catch(UserNotFoundException e){
+			exceptionThrown = true;
+		}
+
+		assertFalse(exceptionThrown);
 	}
 }
