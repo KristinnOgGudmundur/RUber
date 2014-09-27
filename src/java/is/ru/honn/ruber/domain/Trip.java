@@ -4,7 +4,7 @@ package is.ru.honn.ruber.domain;
  * Created by Kristinn on 26.9.2014.
  */
 public class Trip {
-    protected String uuid;
+    protected String uuid; //Unique user identifier
     protected int requestTime;
     protected String productId;
     protected TripStatus status;

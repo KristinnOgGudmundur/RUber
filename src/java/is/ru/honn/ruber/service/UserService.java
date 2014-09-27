@@ -18,6 +18,8 @@ public class UserService implements RuberUserService{
 	@Override
 	public void addTrips() {
 		//TODO: Figure out and implement
+		//Part 1: "Add new trip for a user"
+
 	}
 
 	@Override
@@ -45,7 +47,7 @@ public class UserService implements RuberUserService{
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber) throws ServiceException{
+	public List<User> getUsers(int pageNumber) throws ServiceException, IllegalArgumentException{
 		int pageSize = 100;
 		if(pageNumber < 0){
 			throw new IllegalArgumentException("Illegal page number");
@@ -61,17 +63,6 @@ public class UserService implements RuberUserService{
 		}
 
 		return returnValue;
-	}
-
-	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException {
-		//TODO: Implement
-		try{
-
-		}
-		catch(ArrayIndexOutOfBoundsException e){
-			throw new ServiceException(e.getMessage(), e.getCause());
-		}
-		return null;
 	}
 
 	@Override

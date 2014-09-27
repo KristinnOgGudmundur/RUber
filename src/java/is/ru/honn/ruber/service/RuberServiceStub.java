@@ -6,7 +6,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
-import javax.xml.ws.Service;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +79,7 @@ public class RuberServiceStub extends RuObject implements RuberService
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber) throws ServiceException {
+	public List<User> getUsers(int pageNumber) throws ServiceException, IllegalArgumentException {
 		return this.userService.getUsers(pageNumber);
 	}
 
