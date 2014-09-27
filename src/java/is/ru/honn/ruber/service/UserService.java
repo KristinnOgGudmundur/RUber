@@ -36,7 +36,7 @@ public class UserService implements RuberUserService{
 			}
 		}
 
-		users.add(new User(	users.size(),
+		users.add(new User(	((Integer)users.size()).toString(),
 							userName,
 							firstName,
 							lastName,

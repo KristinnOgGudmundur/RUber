@@ -7,7 +7,7 @@ public class User {
 	/**
 	 * The id of the user
 	 */
-    protected int id;
+    protected String uuid;
 	/**
 	 * The user name of the user
 	 */
@@ -40,8 +40,8 @@ public class User {
     public User() {
     }
 
-	public User(int id, String userName, String firstName, String lastName, String password, String email, String picture, String promoCode){
-		setId(id);
+	public User(String uuid, String userName, String firstName, String lastName, String password, String email, String picture, String promoCode){
+		setId(uuid);
 		setUsername(userName);
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -51,12 +51,12 @@ public class User {
 		setPromoCode(promoCode);
 	}
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return uuid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getUsername() {
