@@ -1,10 +1,7 @@
 package is.ru.honn.ruber.test;
 
 import is.ru.honn.ruber.domain.User;
-import is.ru.honn.ruber.service.RuberService;
-import is.ru.honn.ruber.service.RuberUserService;
-import is.ru.honn.ruber.service.UserNotFoundException;
-import is.ru.honn.ruber.service.UsernameExistsException;
+import is.ru.honn.ruber.service.*;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,16 +47,35 @@ public class TestRuberService extends TestCase
 
 	}
 
-	@Test //(expected= UsernameExistsException.class)
+	@Test
 	public void testUser()
 	{
 		log.info("testUser");
 
-		assertTrue(service.getUsers().isEmpty());
+		//Try to get users from an empty list
+		List<User> tempList = new ArrayList<User>();
 
+		try{
+			tempList = service.getUsers(0);
+		}
+		catch (ServiceException e){
+
+		}
+
+		assertTrue(tempList.isEmpty());
+
+		//Test adding users to the service
 		addTestUsers();
 
-		assertFalse(service.getUsers().isEmpty());
+		//Try to get users from a non-empty list
+		try{
+			tempList = service.getUsers(0);
+		}
+		catch (ServiceException e){
+
+		}
+
+		assertFalse(tempList.isEmpty());
 	}
 
 	public void addTestUsers(){
@@ -133,10 +151,10 @@ public class TestRuberService extends TestCase
 			exceptionThrown = true;
 		}
 
-		assertFalse(exceptionThrown);
+		assertTrue(exceptionThrown);
 		exceptionThrown = false;
 
-		//Try to get an existing
+		//Try to get an existing user
 		try{
 			service.getUser(testUser1.getUsername());
 		}
@@ -144,7 +162,7 @@ public class TestRuberService extends TestCase
 			exceptionThrown = true;
 		}
 
-		assertTrue(exceptionThrown);
+		assertFalse(exceptionThrown);
 
 	}
 

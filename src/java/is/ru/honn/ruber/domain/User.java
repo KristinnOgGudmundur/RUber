@@ -16,6 +16,17 @@ public class User {
     public User() {
     }
 
+	public User(int id, String userName, String firstName, String lastName, String password, String email, String picture, String promoCode){
+		setId(id);
+		setUsername(userName);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setPassword(password);
+		setEmail(email);
+		setPicture(picture);
+		setPromoCode(promoCode);
+	}
+
     public int getId() {
         return id;
     }

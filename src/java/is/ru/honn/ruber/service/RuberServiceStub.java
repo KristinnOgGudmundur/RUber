@@ -13,6 +13,7 @@ import java.util.List;
 
 public class RuberServiceStub extends RuObject implements RuberService
 {
+	//TODO: Get all messages from the resource bundle
 	//TODO: Get this class dynamically, perhaps from a factory class
 	private RuberUserService userService = new UserService();
 
@@ -79,13 +80,8 @@ public class RuberServiceStub extends RuObject implements RuberService
 	}
 
 	@Override
-	public List<User> getUsers() {
-		return this.userService.getUsers();
-	}
-
-	@Override
-	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException {
-		return this.userService.getUsers(pageNumber, pageSize);
+	public List<User> getUsers(int pageNumber) throws ServiceException {
+		return this.userService.getUsers(pageNumber);
 	}
 
 	@Override
