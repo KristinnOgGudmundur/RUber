@@ -1,10 +1,7 @@
 package is.ru.honn.ruber.test;
 
 import is.ru.honn.ruber.domain.User;
-import is.ru.honn.ruber.service.RuberService;
-import is.ru.honn.ruber.service.RuberUserService;
-import is.ru.honn.ruber.service.UserNotFoundException;
-import is.ru.honn.ruber.service.UsernameExistsException;
+import is.ru.honn.ruber.service.*;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,11 +52,27 @@ public class TestRuberService extends TestCase
 	{
 		log.info("testUser");
 
-		assertTrue(service.getUsers().isEmpty());
+		List<User> tempList = new ArrayList<User>();
+
+		try{
+			tempList = service.getUsers(0);
+		}
+		catch (ServiceException e){
+
+		}
+
+		assertTrue(tempList.isEmpty());
 
 		addTestUsers();
 
-		assertFalse(service.getUsers().isEmpty());
+		try{
+			tempList = service.getUsers(0);
+		}
+		catch (ServiceException e){
+
+		}
+
+		assertFalse(tempList.isEmpty());
 	}
 
 	public void addTestUsers(){

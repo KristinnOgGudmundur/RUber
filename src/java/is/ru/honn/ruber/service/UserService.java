@@ -43,11 +43,24 @@ public class UserService implements RuberUserService{
 	}
 
 	@Override
-	public List<User> getUsers() {
-		return users;
+	public List<User> getUsers(int pageNumber) throws ServiceException{
+		int pageSize = 100;
+		if(pageNumber < 0){
+			throw new IllegalArgumentException("Illegal page number");
+		}
+		if((pageNumber - 1) * pageSize > users.size()){
+			throw new ServiceException("Page number is too high");
+		}
+
+		List<User> returnValue = new ArrayList<User>(100);
+
+		for(int i = pageNumber * pageSize; i < Math.min(((pageNumber + 1) * pageSize), users.size()); i++){
+			returnValue.add(users.get(i));
+		}
+
+		return returnValue;
 	}
 
-	@Override
 	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException {
 		//TODO: Implement
 		try{

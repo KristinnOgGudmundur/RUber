@@ -13,7 +13,6 @@ public interface RuberUserService {
 	public void addTrips();
 	public History getHistory(User user);
 	public void signup(String userName, String firstName, String lastName, String password, String email, String picture, String promoCode) throws UsernameExistsException;
-	public List<User> getUsers();
-	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException;
+	public List<User> getUsers(int pageNumber) throws ServiceException;
 	public User getUser(String userName) throws UserNotFoundException;
 }
