@@ -1,8 +1,6 @@
 package is.ru.honn.ruber.domain;
 
-/**
- * Created by Kristinn on 26.9.2014.
- */
+//TODO: Learn what this class does and how it is related to User and History
 public class Trip {
     protected String uuid; //Unique user identifier
     protected int requestTime;

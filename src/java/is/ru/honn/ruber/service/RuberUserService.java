@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Gvendur Stefáns on 27.9.2014.
  */
 public interface RuberUserService {
-	//TODO: Make a javadoc
+	//TODO: Make a javadoc for addTrips() and getHistory()
 	public void addTrips();
 	public History getHistory(User user);
 	/**

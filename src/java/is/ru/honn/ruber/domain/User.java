@@ -1,16 +1,40 @@
 package is.ru.honn.ruber.domain;
 
 /**
- * Created by Kristinn on 26.9.2014.
+ * A POJO class containing information about a user.
  */
 public class User {
+	/**
+	 * The id of the user
+	 */
     protected int id;
+	/**
+	 * The user name of the user
+	 */
     protected String username;
+	/**
+	 * The first name of the user
+	 */
     protected String firstName;
+	/**
+	 * The last name of the user
+	 */
     protected String lastName;
+	/**
+	 * The password of the user
+	 */
     protected String password;
+	/**
+	 * The e-mail of the user
+	 */
     protected String email;
+	/**
+	 * An URL of the user's picture
+	 */
     protected String picture;
+	/**
+	 * The promo code of the user
+	 */
     protected String promoCode;
 
     public User() {
