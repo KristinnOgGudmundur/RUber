@@ -4,6 +4,55 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="ruberService" class="is.ru.honn.ruber.service.RuberServiceStub" >
+
     </bean>
+
+	<bean id="testUser1" class="is.ru.honn.ruber.domain.User">
+		<property name="username">
+			<value>Bobby123</value>
+		</property>
+		<property name="firstName">
+			<value>Bob</value>
+		</property>
+		<property name="lastName">
+			<value>the builder</value>
+		</property>
+		<property name="email">
+			<value>bob@builder.com</value>
+		</property>
+		<property name="password">
+			<value>YesWeCan1</value>
+		</property>
+		<property name="picture">
+			<value>bob.png</value>
+		</property>
+		<property name="promoCode">
+			<value>bobby</value>
+		</property>
+	</bean>
+
+	<bean id="testUser2" class="is.ru.honn.ruber.domain.User">
+		<property name="username">
+			<value>Alice321</value>
+		</property>
+		<property name="firstName">
+			<value>Alice</value>
+		</property>
+		<property name="lastName">
+			<value>in Wonderland</value>
+		</property>
+		<property name="email">
+			<value>alice@wonderland.org</value>
+		</property>
+		<property name="password">
+			<value>RabbitHole</value>
+		</property>
+		<property name="picture">
+			<value>alice.png</value>
+		</property>
+		<property name="promoCode">
+			<value>alice</value>
+		</property>
+	</bean>
 
 </beans>

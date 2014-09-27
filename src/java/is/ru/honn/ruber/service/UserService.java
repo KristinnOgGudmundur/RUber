@@ -32,7 +32,7 @@ public class UserService implements RuberUserService{
 	@Override
 	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException {
 		try{
-			
+
 		}
 		catch(ArrayIndexOutOfBoundsException e){
 			throw new ServiceException(e.getMessage(), e.getCause());
