@@ -1,23 +1,20 @@
 package is.ru.honn.ruber.process;
 
 import is.ru.honn.ruber.service.RuberService;
+import is.ruframework.http.SimpleHttpRequest;
 import is.ruframework.process.RuAbstractProcess;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-
 import java.util.Locale;
 import java.util.logging.Logger;
 
-/**
- * Created by Kristinn on 27.9.2014.
- */
 public class TripImportProcess extends RuAbstractProcess {
     Logger log = Logger.getLogger(this.getClass().getName());
     RuberService ruberService;
     MessageSource msg;
-    Locale loc = new Locale("IS");
+    String history;
+    Locale loc = new Locale("EN");
 
     public void beforeProcess()
     {
@@ -25,17 +22,29 @@ public class TripImportProcess extends RuAbstractProcess {
         ruberService = (RuberService) ctx.getBean("RuberService");
 
         msg = (MessageSource) ctx.getBean("messageSource");
-        getProcessContext().setProcessName(this.getClass().getSimpleName());
-        log.info(msg.getMessage("processbefore", new Object[]{getProcessContext().getProcessName()},loc));
+        log.info(msg.getMessage("processbefore", new Object[]{getProcessContext().getProcessName()}, loc));
     }
 
     public void startProcess()
     {
-        log.info("start");
+        log.info(msg.getMessage("processstart", new Object[]{getProcessContext().getProcessName()}, loc));
+        try
+        {
+            history = SimpleHttpRequest.sendGetRequest(getProcessContext().getImportURL());
+
+        }catch (Exception e)
+        {
+            log.info(msg.getMessage("processreaderror", new Object[]{getProcessContext().getImportURL()}, loc));
+        }
+
+        log.info(msg.getMessage("processstartdone", new Object[]{getProcessContext().getProcessName()}, loc));
     }
 
     public void afterProcess()
     {
-        log.info("after");
+        if(history != null)
+        {
+            System.out.println(history);
+        }
     }
 }
