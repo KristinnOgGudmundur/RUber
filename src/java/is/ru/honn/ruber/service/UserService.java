@@ -3,12 +3,16 @@ package is.ru.honn.ruber.service;
 import is.ru.honn.ruber.domain.History;
 import is.ru.honn.ruber.domain.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Gvendur Stefáns on 27.9.2014.
  */
 public class UserService implements RuberUserService{
+	private List<User> users = new ArrayList<User>();
+
+
 	@Override
 	public void addTrips() {
 
@@ -26,7 +30,7 @@ public class UserService implements RuberUserService{
 
 	@Override
 	public List<User> getUsers() {
-		return null;
+		return users;
 	}
 
 	@Override

@@ -48,10 +48,34 @@
 			<value>RabbitHole</value>
 		</property>
 		<property name="picture">
-			<value>alice.png</value>
+			<value>alice.jpg</value>
 		</property>
 		<property name="promoCode">
 			<value>alice</value>
+		</property>
+	</bean>
+
+	<bean id="testUser3" class="is.ru.honn.ruber.domain.User">
+		<property name="username">
+			<value>Trudy666</value>
+		</property>
+		<property name="firstName">
+			<value>Trudy</value>
+		</property>
+		<property name="lastName">
+			<value>Fatale</value>
+		</property>
+		<property name="email">
+			<value>trudy@maliciousURL.net</value>
+		</property>
+		<property name="password">
+			<value>DropTableStudents1</value>
+		</property>
+		<property name="picture">
+			<value>trudy.gif</value>
+		</property>
+		<property name="promoCode">
+			<value>trudy</value>
 		</property>
 	</bean>
 
