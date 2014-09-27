@@ -3,7 +3,6 @@ package is.ru.honn.ruber.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: Learn what this class does and how it is related to User and Trip
 public class History {
     protected int offset;
     protected int limit;

@@ -173,7 +173,6 @@ public class TestRuberService extends TestCase
 	@Test
 	public void testActivity()
 	{
-		//TODO: Implement
 		log.info("testActivity");
 
 		boolean exceptionThrown = false;
