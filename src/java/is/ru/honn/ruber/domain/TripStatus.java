@@ -1,9 +1,12 @@
 package is.ru.honn.ruber.domain;
 
 /**
- * Created by Kristinn on 26.9.2014.
+ * Contains available values for the status of a trip
  */
 public enum TripStatus {
+	/**
+	 * Signifies that the trip is completed
+	 */
     COMPLETED(1);
 
     protected final int value;

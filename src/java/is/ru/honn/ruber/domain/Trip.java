@@ -1,14 +1,41 @@
 package is.ru.honn.ruber.domain;
 
+/**
+ * A POJO class that contains information about a trip
+ */
 public class Trip {
+	/**
+	 * The id of the User that bought the trip
+	 */
     protected String uuid;
+	/**
+	 * The time when the trip was requested
+	 */
     protected int requestTime;
+	/**
+	 * The id of the trip's product
+	 */
     protected String productId;
+	/**
+	 * The status of the trip
+	 */
     protected TripStatus status;
+	/**
+	 * The distance of the trip
+	 */
     protected float distance;
+	/**
+	 * The time when the trip started
+	 */
     protected int startTime;
+	/**
+	 * The time when the trip ended
+	 */
     protected int endTime;
 
+	/**
+	 * A default constructor
+	 */
     public Trip() {
     }
 

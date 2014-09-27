@@ -18,8 +18,8 @@ public class UserService implements RuberUserService{
 
 
 	@Override
-	public void addTrips(String userId, Trip trip) throws UserNotFoundException {
-		getHistory(userId).getHistory().add(trip);
+	public void addTrips(String userName, Trip trip) throws UserNotFoundException {
+		getHistory(userName).getHistory().add(trip);
 	}
 
 	@Override

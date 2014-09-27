@@ -10,8 +10,20 @@ import java.util.List;
  * Created by Gvendur Stefáns on 27.9.2014.
  */
 public interface RuberUserService {
-	//TODO: Make a javadoc for addTrips() and getHistory()
-	public void addTrips(String userId, Trip trip) throws UserNotFoundException;
+	/**
+	 * Adds a trip to a user with the given user name
+	 * @param userName The user name of the user
+	 * @param trip The trip that should be added
+	 * @throws UserNotFoundException Thrown if there is no user with the given user name
+	 */
+	public void addTrips(String userName, Trip trip) throws UserNotFoundException;
+
+	/**
+	 * Get the trip history of the user with the given user name
+	 * @param userName The user name of the user
+	 * @return The history of the user's trips
+	 * @throws UserNotFoundException Thrown if there is no user with the given user name
+	 */
 	public History getHistory(String userName) throws UserNotFoundException;
 	/**
 	 * Create a new user if no user exists with the given user name
@@ -22,7 +34,7 @@ public interface RuberUserService {
 	 * @param email The email of the user
 	 * @param picture An url to the user's picture
 	 * @param promoCode A promo code for the user
-	 * @throws UsernameExistsException If the given user name already exists.
+	 * @throws UsernameExistsException Thrown if the given user name already exists.
 	 */
 	public void signup(String userName, String firstName, String lastName, String password, String email, String picture, String promoCode) throws UsernameExistsException;
 	/**
@@ -30,14 +42,14 @@ public interface RuberUserService {
 	 * @param pageNumber The number of the page that should be retrieved
 	 * @return A list of 0-100 users
 	 * @throws ServiceException If the page number if too high. I.e. if there are not enough users to fill pageNumber pages
-	 * @throws IllegalArgumentException If the given page number if less than 0
+	 * @throws IllegalArgumentException Thrown if the given page number if less than 0
 	 */
 	public List<User> getUsers(int pageNumber) throws ServiceException, IllegalArgumentException;
 	/**
-	 * Returns the user with the given user name
+	 * Get the user with the given user name
 	 * @param userName The user name of the user
 	 * @return A user with the given user name
-	 * @throws UserNotFoundException If there is no user with the given user name
+	 * @throws UserNotFoundException Thrown if there is no user with the given user name
 	 */
 	public User getUser(String userName) throws UserNotFoundException;
 }

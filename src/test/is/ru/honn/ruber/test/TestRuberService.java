@@ -20,9 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Runs tests on a RuberService to make sure that everything works correctly.
+ * Gets mock objects and the name of the RuberService from /res/app-test-stub.xml
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/res/app-test-stub.xml"})
-@DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@DirtiesContext(classMode=DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class TestRuberService extends TestCase
 {
 
@@ -43,6 +47,10 @@ public class TestRuberService extends TestCase
 	@Autowired
 	private User testUser3;
 
+	/**
+	 * Performs the necessary setup for the tests
+	 * @throws Exception Thrown if there is an error
+	 */
 	@Before
 	public void setUp() throws Exception
 	{

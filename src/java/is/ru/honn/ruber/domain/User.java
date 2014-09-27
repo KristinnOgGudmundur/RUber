@@ -37,9 +37,23 @@ public class User {
 	 */
     protected String promoCode;
 
+	/**
+	 * A default constructor
+	 */
     public User() {
     }
 
+	/**
+	 * A parametric constructor
+	 * @param uuid The user's id
+	 * @param userName The user name of the user
+	 * @param firstName The first name of the user
+	 * @param lastName The last name of the user
+	 * @param password The password of the user
+	 * @param email The e-mail of the user
+	 * @param picture An url of the User's picture
+	 * @param promoCode The promo code of the user
+	 */
 	public User(String uuid, String userName, String firstName, String lastName, String password, String email, String picture, String promoCode){
 		setId(uuid);
 		setUsername(userName);
