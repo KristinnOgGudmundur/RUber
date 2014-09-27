@@ -1,6 +1,7 @@
 package is.ru.honn.ruber.service;
 
 import is.ru.honn.ruber.domain.History;
+import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.User;
 
 import java.util.ArrayList;
@@ -13,19 +14,21 @@ public class UserService implements RuberUserService{
 	//TODO: Get messages from the resource bundle
 
 	private List<User> users = new ArrayList<User>();
+	private List<History> userHistories = new ArrayList<History>();
 
 
 	@Override
-	public void addTrips() {
-		//TODO: Figure out and implement
-		//Part 1: "Add new trip for a user"
-
+	public void addTrips(String userId, Trip trip) throws UserNotFoundException {
+		//TODO: Test
+		getHistory(userId).getHistory().add(trip);
 	}
 
 	@Override
-	public History getHistory(User user) {
-		//TODO: Implement
-		return null;
+	public History getHistory(String userName) throws UserNotFoundException {
+		//TODO: Test
+		int index = getIndexByUserId(getUser(userName).getId());
+
+		return userHistories.get(index);
 	}
 
 	@Override
@@ -36,7 +39,8 @@ public class UserService implements RuberUserService{
 			}
 		}
 
-		users.add(new User(	((Integer)users.size()).toString(),
+		int index = users.size();
+		users.add(new User(	((Integer)index).toString(),
 							userName,
 							firstName,
 							lastName,
@@ -44,6 +48,7 @@ public class UserService implements RuberUserService{
 							email,
 							picture,
 							promoCode));
+		userHistories.add(index, new History(0,0,0));
 	}
 
 	@Override
@@ -75,4 +80,12 @@ public class UserService implements RuberUserService{
 
 		throw new UserNotFoundException("There is no user with that user name");
 	}
+
+	// region Helper functions
+
+	private int getIndexByUserId(String uuid){
+		return Integer.parseInt(uuid);
+	}
+
+	// endregion Helper functions
 }

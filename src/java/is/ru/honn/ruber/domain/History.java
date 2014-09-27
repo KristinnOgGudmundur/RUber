@@ -1,5 +1,6 @@
 package is.ru.honn.ruber.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //TODO: Learn what this class does and how it is related to User and Trip
@@ -11,6 +12,13 @@ public class History {
 
     public History() {
     }
+
+	public History(int offset, int limit, int count){
+		setOffset(offset);
+		setLimit(limit);
+		setCount(count);
+		history = new ArrayList<Trip>();
+	}
 
     public int getOffset() {
         return offset;

@@ -1,6 +1,7 @@
 package is.ru.honn.ruber.service;
 
 import is.ru.honn.ruber.domain.History;
+import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.User;
 
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.List;
  */
 public interface RuberUserService {
 	//TODO: Make a javadoc for addTrips() and getHistory()
-	public void addTrips();
-	public History getHistory(User user);
+	public void addTrips(String userId, Trip trip) throws UserNotFoundException;
+	public History getHistory(String userName) throws UserNotFoundException;
 	/**
 	 * Create a new user if no user exists with the given user name
 	 * @param userName The user name of the user

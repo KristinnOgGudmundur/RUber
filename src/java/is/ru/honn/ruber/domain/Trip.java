@@ -2,7 +2,7 @@ package is.ru.honn.ruber.domain;
 
 //TODO: Learn what this class does and how it is related to User and History
 public class Trip {
-    protected String uuid; //Unique user identifier
+    protected String uuid;
     protected int requestTime;
     protected String productId;
     protected TripStatus status;
