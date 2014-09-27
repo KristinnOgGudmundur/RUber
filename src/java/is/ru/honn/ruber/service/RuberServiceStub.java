@@ -6,12 +6,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
+import javax.xml.ws.Service;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RuberServiceStub extends RuObject implements RuberService
 {
+	//TODO: Get this class dynamically, perhaps from a factory class
+	private RuberUserService userService = new UserService();
+
 	@Override
 	public List getProducts(double latitude, double longitude) throws ServiceException
 	{
@@ -61,32 +65,32 @@ public class RuberServiceStub extends RuObject implements RuberService
 
 	@Override
 	public void addTrips() {
-
+		this.userService.addTrips();
 	}
 
 	@Override
 	public History getHistory(User user) {
-		return null;
+		return this.userService.getHistory(user);
 	}
 
 	@Override
 	public void signup(String userName, String firstName, String lastName, String password, String email, String picture, String promoCode) throws UsernameExistsException {
-
+		this.userService.signup(userName, firstName, lastName, password, email, picture, promoCode);
 	}
 
 	@Override
 	public List<User> getUsers() {
-		return null;
+		return this.userService.getUsers();
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber) throws ArrayIndexOutOfBoundsException {
-		return null;
+	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException {
+		return this.userService.getUsers(pageNumber, pageSize);
 	}
 
 	@Override
-	public User getUser() throws UserNotFoundException {
-		return null;
+	public User getUser(String userName) throws UserNotFoundException {
+		return this.userService.getUser(userName);
 	}
 
 }
