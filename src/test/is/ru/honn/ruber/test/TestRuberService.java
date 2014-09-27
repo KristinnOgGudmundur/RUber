@@ -38,9 +38,6 @@ public class TestRuberService extends TestCase
 	@Autowired
 	private User testUser3;
 
-	@Rule
-	public ExpectedException exception = ExpectedException.none();
-
 	@Before
 	public void setUp() throws Exception
 	{
