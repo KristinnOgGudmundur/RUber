@@ -23,8 +23,8 @@ public class TripImportProcess extends RuAbstractProcess {
     {
         ApplicationContext ctx = new FileSystemXmlApplicationContext("app.xml");
         ruberService = (RuberService) ctx.getBean("RuberService");
-        msg = (MessageSource) ctx.getBean("messageSource");
 
+        msg = (MessageSource) ctx.getBean("messageSource");
         getProcessContext().setProcessName(this.getClass().getSimpleName());
         log.info(msg.getMessage("processbefore", new Object[]{getProcessContext().getProcessName()},loc));
     }
