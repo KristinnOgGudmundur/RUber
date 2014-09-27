@@ -15,17 +15,31 @@ public class UserService implements RuberUserService{
 
 	@Override
 	public void addTrips() {
-
+		//TODO: Figure out and implement
 	}
 
 	@Override
 	public History getHistory(User user) {
+		//TODO: Implement
 		return null;
 	}
 
 	@Override
 	public void signup(String userName, String firstName, String lastName, String password, String email, String picture, String promoCode) throws UsernameExistsException {
+		for(User u : users){
+			if(u.getUsername() == userName){
+				throw new UsernameExistsException("That user name is already taken. Please choose another one");
+			}
+		}
 
+		users.add(new User(	users.size(),
+							userName,
+							firstName,
+							lastName,
+							password,
+							email,
+							picture,
+							promoCode));
 	}
 
 	@Override
@@ -35,6 +49,7 @@ public class UserService implements RuberUserService{
 
 	@Override
 	public List<User> getUsers(int pageNumber, int pageSize) throws ServiceException {
+		//TODO: Implement
 		try{
 
 		}
@@ -46,6 +61,12 @@ public class UserService implements RuberUserService{
 
 	@Override
 	public User getUser(String userName) throws UserNotFoundException {
-		return null;
+		for(User u : users){
+			if(u.getUsername() == userName){
+				return u;
+			}
+		}
+
+		throw new UserNotFoundException("There is no user with that user name");
 	}
 }

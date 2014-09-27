@@ -48,7 +48,7 @@ public class TestRuberService extends TestCase
 
 	}
 
-	@Test //(expected= UsernameExistsException.class)
+	@Test
 	public void testUser()
 	{
 		log.info("testUser");
@@ -133,10 +133,10 @@ public class TestRuberService extends TestCase
 			exceptionThrown = true;
 		}
 
-		assertFalse(exceptionThrown);
+		assertTrue(exceptionThrown);
 		exceptionThrown = false;
 
-		//Try to get an existing
+		//Try to get an existing user
 		try{
 			service.getUser(testUser1.getUsername());
 		}
@@ -144,7 +144,7 @@ public class TestRuberService extends TestCase
 			exceptionThrown = true;
 		}
 
-		assertTrue(exceptionThrown);
+		assertFalse(exceptionThrown);
 
 	}
 
