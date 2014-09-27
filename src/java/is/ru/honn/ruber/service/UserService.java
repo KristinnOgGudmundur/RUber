@@ -30,7 +30,7 @@ public class UserService implements RuberUserService{
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber) throws ArrayIndexOutOfBoundsException {
+	public List<User> getUsers(int pageNumber, int pageSize) throws ArrayIndexOutOfBoundsException {
 		return null;
 	}
 

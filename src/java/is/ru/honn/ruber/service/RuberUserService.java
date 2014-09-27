@@ -14,6 +14,6 @@ public interface RuberUserService {
 	public History getHistory(User user);
 	public void signup(String userName, String firstName, String lastName, String password, String email, String picture, String promoCode) throws UsernameExistsException;
 	public List<User> getUsers();
-	public List<User> getUsers(int pageNumber) throws ArrayIndexOutOfBoundsException;
+	public List<User> getUsers(int pageNumber, int pageSize) throws ArrayIndexOutOfBoundsException;
 	public User getUser(String userName) throws UserNotFoundException;
 }

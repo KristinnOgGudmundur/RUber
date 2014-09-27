@@ -12,6 +12,7 @@ import java.util.List;
 
 public class RuberServiceStub extends RuObject implements RuberService
 {
+	//TODO: Get this class dynamically, perhaps from a factory class
 	private RuberUserService userService = new UserService();
 
 	@Override
@@ -82,8 +83,8 @@ public class RuberServiceStub extends RuObject implements RuberService
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber) throws ArrayIndexOutOfBoundsException {
-		return this.userService.getUsers(pageNumber);
+	public List<User> getUsers(int pageNumber, int pageSize) throws ArrayIndexOutOfBoundsException {
+		return this.userService.getUsers(pageNumber, pageSize);
 	}
 
 	@Override
