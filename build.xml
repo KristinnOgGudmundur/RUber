@@ -1,5 +1,4 @@
 <project name="TripImportProcess" default="jar" basedir=".">
-
 	<property name="src.java" value="src/java"/>
 	<property name="src.msg" value="src/msg"/>
 	<property name="output.dir" value="classes"/>
@@ -12,10 +11,9 @@
 			<include name="*.jar" />
 		</fileset>
 	</path>
-
+	<property name="theClasspath" refid="classPath"/>
 
 	<!-- ========================================================================= -->
-
 	<target name="writeClasspath"
 			description="Writes out the classpath to classpath.txt">
 		<pathconvert pathsep="${line.separator}" property="classpath" refid="classPath">
@@ -23,20 +21,15 @@
 				<flattenmapper />
 			</mapper>
 		</pathconvert>
-
 		<echo file="classpath.txt">${classpath}</echo>
 	</target>
-
 	<!-- ========================================================================= -->
-
 	<target name="init"
 			description="Prepare by creating output directories">
 		<mkdir dir="${output.dir}"/>
 		<mkdir dir="${dist.dir}"/>
 	</target>
-
 	<!-- ========================================================================= -->
-
 	<target name="compile" depends="init"
 			description="Compilation of all source files">
 		<javac srcdir="${src.java}"
@@ -44,34 +37,25 @@
 				>
 			<classpath refid="classPath"></classpath>
 		</javac>
-
 	</target>
-
 	<!-- ========================================================================= -->
-
 	<target name="jar" depends="compile"
 			description="Create the JAR">
-		<jar jarfile="${dist.dir}/${jar.file}" basedir="${output.dir}"/>
-		<manifestclasspath property="mf.classpath"
-						   	jarfile="${dist.dir}/${jar.file}">
-			<classpath refid="classPath"/>
-		</manifestclasspath>
 		<jar jarfile="${dist.dir}/${jar.file}"
-			 basedir="${output.dir}"
-				>
+			 basedir="${output.dir}">
 			<fileset dir="${src.msg}"/>
 			<manifest>
 				<attribute name="Main-Class"
 						   value="${main.class}"/>
+				<attribute name="Class-Path"
+						   value="${theClasspath}"/>
 			</manifest>
 		</jar>
 	</target>
-
 	<!-- ========================================================================= -->
-
 	<target name="run" depends="jar"
 			description="Runs the process">
-		<java  jar="${dist.dir}/${jar.file}" fork="true">
+		<java classname="${main.class}" output="out.txt">
 			<classpath>
 				<path refid="classPath"/>
 				<pathelement path="${java.class.path}"/>
@@ -80,11 +64,9 @@
 			<arg value="process.xml"/>
 		</java>
 	</target>
-
 	<!-- ======================================================== -->
 	<target name="clean" description="Delete all generated files">
 		<delete dir="${output.dir}"/>
 		<delete dir="${dist.dir}"/>
 	</target>
-
 </project>
