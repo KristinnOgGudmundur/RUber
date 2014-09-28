@@ -18,7 +18,6 @@ public enum TripStatus {
     public int getValue() {
         return value;
     }
-
     @Override
     public String toString() {
         return values()[value].toString();
