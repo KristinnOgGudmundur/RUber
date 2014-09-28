@@ -2,6 +2,7 @@ package is.ru.honn.ruber.process;
 
 import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.TripStatus;
+import is.ru.honn.ruber.parser.JsonParse;
 import is.ru.honn.ruber.service.RuberService;
 import is.ru.honn.ruber.service.UserNotFoundException;
 import is.ru.honn.ruber.service.UsernameExistsException;
@@ -26,6 +27,7 @@ public class TripImportProcess extends RuAbstractProcess {
     MessageSource msg;
     String history;
     Locale loc = new Locale("EN");
+    JSONObject jsonObj;
 
     public void beforeProcess()
     {
@@ -49,7 +51,7 @@ public class TripImportProcess extends RuAbstractProcess {
         }
 
         Object obj= JSONValue.parse(history);
-        JSONObject jsonObj = (JSONObject)obj;
+        jsonObj = (JSONObject)obj;
         JSONArray array = (JSONArray)jsonObj.get("history");
         Iterator i = array.iterator();
 
@@ -89,7 +91,7 @@ public class TripImportProcess extends RuAbstractProcess {
     {
         if(history != null)
         {
-            System.out.println(history);
+            System.out.println(JsonParse.PurdyJson(jsonObj).toString());
         }
     }
 }
