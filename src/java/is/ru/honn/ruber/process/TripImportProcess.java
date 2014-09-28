@@ -2,6 +2,7 @@ package is.ru.honn.ruber.process;
 
 import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.TripStatus;
+import is.ru.honn.ruber.parser.JsonParse;
 import is.ru.honn.ruber.service.RuberService;
 import is.ru.honn.ruber.service.UserNotFoundException;
 import is.ru.honn.ruber.service.UsernameExistsException;
@@ -20,13 +21,20 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+/**
+ * Process run by the ru-framework process runner, Reads from website and adds the trip info to the service.
+ */
 public class TripImportProcess extends RuAbstractProcess {
     Logger log = Logger.getLogger(this.getClass().getName());
     RuberService ruberService;
     MessageSource msg;
     String history;
     Locale loc = new Locale("EN");
+    JSONObject jsonObj;
 
+    /**
+     * setting up the application with app.xml
+     */
     public void beforeProcess()
     {
         ApplicationContext ctx = new FileSystemXmlApplicationContext("app.xml");
@@ -36,20 +44,25 @@ public class TripImportProcess extends RuAbstractProcess {
         log.info(msg.getMessage("processbefore", new Object[]{getProcessContext().getProcessName()}, loc));
     }
 
+    /**
+     * reads from site, parses to json and adds to trips
+     */
     public void startProcess()
     {
         log.info(msg.getMessage("processstart", new Object[]{getProcessContext().getProcessName()}, loc));
+
         try
         {
             history = (SimpleHttpRequest.sendGetRequest(getProcessContext().getImportURL()));
 
-        }catch (Exception e)
+        }
+        catch (Exception e)
         {
             log.info(msg.getMessage("processreaderror", new Object[]{getProcessContext().getImportURL()}, loc));
         }
 
         Object obj= JSONValue.parse(history);
-        JSONObject jsonObj = (JSONObject)obj;
+        jsonObj = (JSONObject)obj;
         JSONArray array = (JSONArray)jsonObj.get("history");
         Iterator i = array.iterator();
 
@@ -85,11 +98,14 @@ public class TripImportProcess extends RuAbstractProcess {
         log.info(msg.getMessage("processstartdone", new Object[]{getProcessContext().getProcessName()}, loc));
     }
 
+    /**
+     * prints out the get-response from website with a little bit of formatting
+     */
     public void afterProcess()
     {
         if(history != null)
         {
-            System.out.println(history);
+            System.out.println(JsonParse.PurdyJson(jsonObj).toString());
         }
     }
 }
