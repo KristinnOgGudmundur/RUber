@@ -13,6 +13,9 @@ hs_err_pid*
 # Personal settings for intelliJ
 .idea/workspace.xml
 
+#ant build script directories
+classes
+dist
 
 # miscellaneous files
 classpath.txt

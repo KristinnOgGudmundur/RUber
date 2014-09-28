@@ -7,7 +7,7 @@
 	<property name="lib.dir" value="lib"/>
 	<property name="jar.file" value="TripImportProcess.jar"/>
 	<property name="main.class" value="is.ruframework.process.RuProcessRunner"/>
-	<path id="classpath">
+	<path id="classPath">
 		<fileset dir="${lib.dir}">
 			<include name="*.jar" />
 		</fileset>
@@ -18,7 +18,7 @@
 
 	<target name="writeClasspath"
 			description="Writes out the classpath to classpath.txt">
-		<pathconvert pathsep="${line.separator}" property="classpath" refid="classpath">
+		<pathconvert pathsep="${line.separator}" property="classpath" refid="classPath">
 			<mapper>
 				<flattenmapper />
 			</mapper>
@@ -31,15 +31,6 @@
 
 	<target name="init"
 			description="Prepare by creating output directories">
-		<!--
-		<pathconvert pathsep="${line.separator}" property="classpath" refid="classpath">
-			<mapper>
-				<flattenmapper />
-			</mapper>
-		</pathconvert>
-
-		<echo file="classpath.txt">"${classpath}"</echo>
-	-->
 		<mkdir dir="${output.dir}"/>
 		<mkdir dir="${dist.dir}"/>
 	</target>
@@ -51,7 +42,7 @@
 		<javac srcdir="${src.java}"
 			   destdir="${output.dir}"
 				>
-			<classpath refid="classpath"></classpath>
+			<classpath refid="classPath"></classpath>
 		</javac>
 
 	</target>
@@ -60,8 +51,14 @@
 
 	<target name="jar" depends="compile"
 			description="Create the JAR">
+		<jar jarfile="${dist.dir}/${jar.file}" basedir="${output.dir}"/>
+		<manifestclasspath property="mf.classpath"
+						   	jarfile="${dist.dir}/${jar.file}">
+			<classpath refid="classPath"/>
+		</manifestclasspath>
 		<jar jarfile="${dist.dir}/${jar.file}"
-			 basedir="${output.dir}">
+			 basedir="${output.dir}"
+				>
 			<fileset dir="${src.msg}"/>
 			<manifest>
 				<attribute name="Main-Class"
@@ -74,9 +71,9 @@
 
 	<target name="run" depends="jar"
 			description="Runs the process">
-		<java classname="${main.class}">
+		<java  jar="${dist.dir}/${jar.file}" fork="true">
 			<classpath>
-				<path refid="classpath"/>
+				<path refid="classPath"/>
 				<pathelement path="${java.class.path}"/>
 				<pathelement location="${dist.dir}\${jar.file}"/>
 			</classpath>
