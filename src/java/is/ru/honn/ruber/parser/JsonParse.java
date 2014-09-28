@@ -2,13 +2,10 @@ package is.ru.honn.ruber.parser;
 
 import org.json.simple.JSONObject;
 
-/**
- * Created by Kristinn on 28.9.2014.
- */
 public class JsonParse {
+
     /**
      * This function makes a jsonString that is pretty to look at
-     * I hope Im not breaking the single responsibility principle by doing this
      * @param jsonObject
      * the original string
      * @return StringBuilder
