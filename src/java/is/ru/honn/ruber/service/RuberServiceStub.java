@@ -64,8 +64,8 @@ public class RuberServiceStub extends RuObject implements RuberService
 	}
 
 	@Override
-	public void addTrips(String userName, Trip trip) throws UserNotFoundException{
-		this.userService.addTrips(userName, trip);
+	public void addTrip(String userName, Trip trip) throws UserNotFoundException{
+		this.userService.addTrip(userName, trip);
 	}
 
 	@Override
