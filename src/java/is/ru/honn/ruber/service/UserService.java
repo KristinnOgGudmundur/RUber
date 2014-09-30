@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Gvendur Stefáns on 27.9.2014.
+ * An implementation of the RuberUserService interface
  */
 public class UserService implements RuberUserService{
 	//TODO: Get messages from the resource bundle
