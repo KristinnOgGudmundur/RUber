@@ -20,3 +20,4 @@ dist
 # miscellaneous files
 classpath.txt
 out.txt
+*.zip

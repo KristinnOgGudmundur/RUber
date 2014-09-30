@@ -27,7 +27,7 @@ public class TripImportProcess extends RuAbstractProcess {
     RuberService ruberService;
     MessageSource msg;
     String history;
-    Locale loc = new Locale("EN");
+    Locale loc = Locale.getDefault();
     JSONObject jsonObj;
 
     /**
