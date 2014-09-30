@@ -38,14 +38,14 @@ public class TripImportProcess extends RuAbstractProcess {
         ApplicationContext ctx = new FileSystemXmlApplicationContext("app.xml");
         ruberService = (RuberService) ctx.getBean("RuberService");
 
-        msg = (MessageSource) ctx.getBean("messageSource");
-        log.info(msg.getMessage("processbefore", new Object[]{getProcessContext().getProcessName()}, loc));
-
         ruberService.signup("Trudy666", "Trudy", "Fatale", "trudy@maliciousURL.net",
-                            "DropTableStudents1", "trudy.gif", "trudy");
+                "DropTableStudents1", "trudy.gif", "trudy");
 
         User trudy = ruberService.getUser("Trudy666");
         trudy.setId("7354db54-cc9b-4961-81f2-0094b8e2d215");
+
+        msg = (MessageSource) ctx.getBean("messageSource");
+        log.info(msg.getMessage("processbefore", new Object[]{getProcessContext().getProcessName()}, loc));
     }
 
     /**
