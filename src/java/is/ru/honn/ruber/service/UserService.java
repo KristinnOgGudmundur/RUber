@@ -1,9 +1,6 @@
 package is.ru.honn.ruber.service;
 
-import is.ru.honn.ruber.domain.History;
-import is.ru.honn.ruber.domain.Trip;
-import is.ru.honn.ruber.domain.User;
-import is.ru.honn.ruber.domain.UserData;
+import is.ru.honn.ruber.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +26,7 @@ public class UserService implements RuberUserService{
     }
 
 	@Override
-	public void addTrips(String uuid, Trip trip) throws UserNotFoundException {
+	public void addTrip(String uuid, Trip trip) throws UserNotFoundException {
 		getHistory(uuid).getHistory().add(trip);
 	}
 
@@ -66,7 +63,7 @@ public class UserService implements RuberUserService{
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber) throws ServiceException, IllegalArgumentException{
+	public UserPage getUsers(int pageNumber) throws ServiceException, IllegalArgumentException{
 		int pageSize = 100;
 		if(pageNumber < 0){
 			throw new IllegalArgumentException("Illegal page number");
@@ -75,13 +72,15 @@ public class UserService implements RuberUserService{
 			throw new ServiceException("Page number is too high");
 		}
 
+		int numberOfPages = (userData.size() / pageSize) + 1;
+
 		List<User> returnValue = new ArrayList<User>(100);
 
 		for(int i = pageNumber * pageSize; i < Math.min(((pageNumber + 1) * pageSize), userData.size()); i++){
 			returnValue.add(userData.get(i).getUser());
 		}
 
-		return returnValue;
+		return new UserPage(returnValue, pageNumber, numberOfPages);
 	}
 
 	@Override

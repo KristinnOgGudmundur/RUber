@@ -2,6 +2,9 @@ package is.ru.honn.ruber.parser;
 
 import org.json.simple.JSONObject;
 
+/**
+ * Contains a method used for making a pretty JSON string
+ */
 public class JsonParse {
 
     /**

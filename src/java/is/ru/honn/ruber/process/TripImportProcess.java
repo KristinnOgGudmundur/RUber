@@ -6,18 +6,15 @@ import is.ru.honn.ruber.domain.User;
 import is.ru.honn.ruber.parser.JsonParse;
 import is.ru.honn.ruber.service.RuberService;
 import is.ru.honn.ruber.service.UserNotFoundException;
-import is.ru.honn.ruber.service.UsernameExistsException;
 import is.ruframework.http.SimpleHttpRequest;
 import is.ruframework.process.RuAbstractProcess;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import java.io.FileReader;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -88,7 +85,7 @@ public class TripImportProcess extends RuAbstractProcess {
 
             try
             {
-                ruberService.addTrips(ImportTrip.getUuid(), ImportTrip);
+                ruberService.addTrip(ImportTrip.getUuid(), ImportTrip);
             }
             catch (UserNotFoundException e)
             {

@@ -6,12 +6,9 @@ import is.ru.honn.ruber.domain.User;
 import is.ru.honn.ruber.service.*;
 import junit.framework.TestCase;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -70,7 +67,7 @@ public class TestRuberService extends TestCase
 		List<User> tempList = new ArrayList<User>();
 
 		try{
-			tempList = service.getUsers(0);
+			tempList = service.getUsers(0).getUsers();
 		}
 		catch (ServiceException e){
 
@@ -83,7 +80,7 @@ public class TestRuberService extends TestCase
 
 		//Try to get users from a non-empty list
 		try{
-			tempList = service.getUsers(0);
+			tempList = service.getUsers(0).getUsers();
 		}
 		catch (ServiceException e){
 
@@ -181,7 +178,7 @@ public class TestRuberService extends TestCase
 	}
 
 	/**
-	 * Tests the methods addTrips() and getHistory() in a given RuberService implementation
+	 * Tests the methods addTrip() and getHistory() in a given RuberService implementation
 	 */
 	@DirtiesContext
 	@Test
@@ -207,7 +204,7 @@ public class TestRuberService extends TestCase
 
 		//Try to add a trip when there are no users ready
 		try{
-			service.addTrips(testUser1.getUsername(), new Trip());
+			service.addTrip(testUser1.getUsername(), new Trip());
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
@@ -243,7 +240,7 @@ public class TestRuberService extends TestCase
 
 		//Try to add a trip for an existing user
 		try{
-			service.addTrips(testUser1.getUsername(), new Trip());
+			service.addTrip(testUser1.getUsername(), new Trip());
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
@@ -269,7 +266,7 @@ public class TestRuberService extends TestCase
 
 		//Try to add a trip for a non-existing user
 		try{
-			service.addTrips(testUser3.getUsername(), new Trip());
+			service.addTrip(testUser3.getUsername(), new Trip());
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
@@ -280,7 +277,7 @@ public class TestRuberService extends TestCase
 
 		//Try to add a second trip for an existing user
 		try{
-			service.addTrips(testUser1.getUsername(), new Trip());
+			service.addTrip(testUser1.getUsername(), new Trip());
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
