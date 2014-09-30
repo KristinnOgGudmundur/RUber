@@ -111,11 +111,11 @@ public class TripImportProcess extends RuAbstractProcess {
         {
             System.out.println(JsonParse.PurdyJson(jsonObj).toString());
 
-
+            /*
             User trudy = ruberService.getUser("Trudy666");
             System.out.println(trudy);
             System.out.println(ruberService.getHistory(trudy.getId()));
-
+            */
         }
     }
 }
