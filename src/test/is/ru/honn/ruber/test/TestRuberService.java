@@ -188,6 +188,7 @@ public class TestRuberService extends TestCase
 
 		boolean exceptionThrown = false;
 		History tempHistory = null;
+		String tempId = null;
 
 		//Try to get the history of a user when there are no users ready
 		try{
@@ -224,8 +225,9 @@ public class TestRuberService extends TestCase
 						testUser1.getPromoCode());
 
 		//Try to get the history of a user that has no trips
+		tempId = service.getUser(testUser1.getUsername()).getId();
 		try{
-			tempHistory = service.getHistory(testUser1.getUsername());
+			tempHistory = service.getHistory(tempId);
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
@@ -240,7 +242,7 @@ public class TestRuberService extends TestCase
 
 		//Try to add a trip for an existing user
 		try{
-			service.addTrip(testUser1.getUsername(), new Trip());
+			service.addTrip(tempId, new Trip());
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
@@ -251,7 +253,7 @@ public class TestRuberService extends TestCase
 
 		//Try to get the history of a user that has 1 trip
 		try{
-			tempHistory = service.getHistory(testUser1.getUsername());
+			tempHistory = service.getHistory(tempId);
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
@@ -277,7 +279,7 @@ public class TestRuberService extends TestCase
 
 		//Try to add a second trip for an existing user
 		try{
-			service.addTrip(testUser1.getUsername(), new Trip());
+			service.addTrip(tempId, new Trip());
 		}
 		catch(UserNotFoundException e){
 			exceptionThrown = true;
