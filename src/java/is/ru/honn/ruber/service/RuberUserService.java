@@ -3,6 +3,7 @@ package is.ru.honn.ruber.service;
 import is.ru.honn.ruber.domain.History;
 import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.User;
+import is.ru.honn.ruber.domain.UserPage;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public interface RuberUserService {
 	 * @throws ServiceException If the page number if too high. I.e. if there are not enough users to fill pageNumber pages
 	 * @throws IllegalArgumentException Thrown if the given page number if less than 0
 	 */
-	public List<User> getUsers(int pageNumber) throws ServiceException, IllegalArgumentException;
+	public UserPage getUsers(int pageNumber) throws ServiceException, IllegalArgumentException;
 	/**
 	 * Get the user with the given user name
 	 * @param userName The user name of the user

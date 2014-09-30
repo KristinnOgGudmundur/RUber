@@ -79,7 +79,7 @@ public class RuberServiceStub extends RuObject implements RuberService
 	}
 
 	@Override
-	public List<User> getUsers(int pageNumber) throws ServiceException, IllegalArgumentException {
+	public UserPage getUsers(int pageNumber) throws ServiceException, IllegalArgumentException {
 		return this.userService.getUsers(pageNumber);
 	}
 

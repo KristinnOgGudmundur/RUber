@@ -67,7 +67,7 @@ public class TestRuberService extends TestCase
 		List<User> tempList = new ArrayList<User>();
 
 		try{
-			tempList = service.getUsers(0);
+			tempList = service.getUsers(0).getUsers();
 		}
 		catch (ServiceException e){
 
@@ -80,7 +80,7 @@ public class TestRuberService extends TestCase
 
 		//Try to get users from a non-empty list
 		try{
-			tempList = service.getUsers(0);
+			tempList = service.getUsers(0).getUsers();
 		}
 		catch (ServiceException e){
 
