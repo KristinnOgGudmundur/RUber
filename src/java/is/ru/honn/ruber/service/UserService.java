@@ -13,16 +13,27 @@ public class UserService implements RuberUserService{
 
 	private List<UserData> userData = new ArrayList<UserData>();
 
+    //Stubbing the service
+    public UserService()
+    {
+        History history = new History();
+        User user = new User("7354db54-cc9b-4961-81f2-0094b8e2d215",
+                             "Trudy666", "Trudy", "Fatale", "trudy@maliciousURL.net",
+                             "DropTableStudents1", "trudy.gif", "trudy");
+
+        UserData u1 = new UserData(user,history);
+        userData.add(u1);
+    }
 
 	@Override
-	public void addTrip(String userName, Trip trip) throws UserNotFoundException {
-		getHistory(userName).getHistory().add(trip);
+	public void addTrip(String uuid, Trip trip) throws UserNotFoundException {
+		getHistory(uuid).getHistory().add(trip);
 	}
 
 	@Override
-	public History getHistory(String userName) throws UserNotFoundException {
+	public History getHistory(String uuid) throws UserNotFoundException {
 		for(UserData ud : userData){
-			if(ud.getUser().getUsername() == userName){
+			if(ud.getUser().getId().equals(uuid)){
 				return ud.getHistory();
 			}
 		}
@@ -75,7 +86,7 @@ public class UserService implements RuberUserService{
 	@Override
 	public User getUser(String userName) throws UserNotFoundException {
 		for(UserData ud : userData){
-			if(ud.getUser().getUsername() == userName){
+			if(ud.getUser().getUsername().equals(userName)){
 				return ud.getUser();
 			}
 		}

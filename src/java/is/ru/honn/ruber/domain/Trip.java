@@ -94,4 +94,15 @@ public class Trip {
     public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public String toString() {
+        return "Uuid: " + getUuid() + "\n" +
+               "Product Id: " + getProductId() + "\n" +
+               "Distance: " + getDistance() + "\n" +
+               "Start time" + getStartTime() + "\n" +
+               "End time: " + getEndTime() + "\n" +
+               "Request time: " + getRequestTime() + "\n" +
+               "Status: " + getStatus().name() + "\n";
+    }
 }

@@ -62,4 +62,21 @@ public class History {
     public void setHistory(List<Trip> history) {
         this.history = history;
     }
+
+    @Override
+    public String toString() {
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("Count: " + getCount() + "\n" +
+                       "Limit: " + getLimit() + "\n" +
+                       "Offset: " + getOffset() + "\n");
+
+        for(Trip t : getHistory())
+        {
+            builder.append("Trip{" + "\n" + t.toString() + "}" + "\n\n");
+        }
+
+        return builder.toString();
+    }
 }

@@ -128,4 +128,16 @@ public class User {
     public void setPromoCode(String promoCode) {
         this.promoCode = promoCode;
     }
+
+    @Override
+    public String toString() {
+        return  "Uuid: " + getId() + "\n" +
+                "Username: " + getUsername() + "\n" +
+                "First name: " + getFirstName() + "\n" +
+                "Last name: " + getLastName() + "\n" +
+                "Password: " + getPassword() + "\n" +
+                "Email: " + getEmail() + "\n" +
+                "Picture: " + getPicture() + "\n" +
+                "Promocode: " + getPromoCode() + "\n";
+    }
 }

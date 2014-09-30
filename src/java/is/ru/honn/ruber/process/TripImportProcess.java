@@ -2,6 +2,7 @@ package is.ru.honn.ruber.process;
 
 import is.ru.honn.ruber.domain.Trip;
 import is.ru.honn.ruber.domain.TripStatus;
+import is.ru.honn.ruber.domain.User;
 import is.ru.honn.ruber.parser.JsonParse;
 import is.ru.honn.ruber.service.RuberService;
 import is.ru.honn.ruber.service.UserNotFoundException;
@@ -103,6 +104,12 @@ public class TripImportProcess extends RuAbstractProcess {
         if(history != null)
         {
             System.out.println(JsonParse.PurdyJson(jsonObj).toString());
+
+            /*
+            User trudy = ruberService.getUser("Trudy666");
+            System.out.println(trudy);
+            System.out.println(ruberService.getHistory(trudy.getId()));
+            */
         }
     }
 }
