@@ -9,8 +9,6 @@ import java.util.List;
  * An implementation of the RuberUserService interface
  */
 public class UserService implements RuberUserService{
-	//TODO: Get messages from the resource bundle
-
 	private List<UserData> userData = new ArrayList<UserData>();
 
 	@Override

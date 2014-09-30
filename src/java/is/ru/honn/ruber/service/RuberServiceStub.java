@@ -12,8 +12,6 @@ import java.util.List;
 
 public class RuberServiceStub extends RuObject implements RuberService
 {
-	//TODO: Get all messages from the resource bundle
-	//TODO: Get this class dynamically, perhaps from a factory class
 	private RuberUserService userService = new UserService();
 
 	@Override
