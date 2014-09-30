@@ -4,13 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Gvendur Stefáns on 30.9.2014.
+ * A POJO class that contains information about numerous users
+ * in a paginated way.
  */
 public class UserPage{
+	/**
+	 * The list of users
+	 */
 	protected List<User> users;
+	/**
+	 * The number of the current page
+	 */
 	protected int pageNumber;
+	/**
+	 * The total number of pages
+	 */
 	protected int numberOfPages;
 
+	/**
+	 * A parametric constructor
+	 * @param users The list of users
+	 * @param pageNumber The number of the current page
+	 * @param numberOfPages The total number of pages
+	 */
 	public UserPage(List<User> users, int pageNumber, int numberOfPages){
 		setUsers(users);
 		setPageNumber(pageNumber);
