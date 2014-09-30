@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A POJO class that contains information about numerous users
+ * A DTO class that contains information about numerous users
  * in a paginated way.
  */
 public class UserPage{

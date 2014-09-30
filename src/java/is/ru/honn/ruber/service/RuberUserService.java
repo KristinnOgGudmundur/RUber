@@ -20,7 +20,6 @@ public interface RuberUserService {
 	 * @throws UserNotFoundException Thrown if there is no user with the given user name
 	 */
 	public void addTrip(String userName, Trip trip) throws UserNotFoundException;
-
 	/**
 	 * Get the trip history of the user with the given user name
 	 * @param userName The user name of the user
